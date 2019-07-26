@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import JournalCard from '../components/JournalCard'
 
+
 class Dashboard extends Component {
 
     constructor() {

@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import Card from 'react-bootstrap/Card'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import Button from 'react-bootstrap/Button'
+import {Card, ButtonToolbar, Button} from 'react-bootstrap'
 
 class JournalCard extends Component {
     render() {

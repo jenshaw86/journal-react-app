@@ -1,11 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Dashboard from './containers/Dashboard'
+import SiteNav from './components/SiteNav'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <Dashboard />
+      <Fragment>
+        <SiteNav />
+        <Dashboard />
+      </Fragment>
     )
   }
 }

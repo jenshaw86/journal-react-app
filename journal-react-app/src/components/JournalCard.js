@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Card, ButtonToolbar, Button} from 'react-bootstrap'
+import {Card, ButtonToolbar, Button, Row, Col} from 'react-bootstrap'
 
 class JournalCard extends Component {
     render() {
         return (
-            <div className="container">
-                <Card>
+            <div className="card-holder">
+                <Card className="journal-card">
                     <Card.Body>
                         {this.props.journal.subject}
                     </Card.Body>

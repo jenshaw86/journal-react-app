@@ -4,7 +4,6 @@ import {Card, ButtonToolbar, Button, Row, Col} from 'react-bootstrap'
 class JournalCard extends Component {
     render() {
         return (
-            <div className="card-holder">
                 <Card className="journal-card">
                     <Card.Body>
                         {this.props.journal.subject}
@@ -14,7 +13,6 @@ class JournalCard extends Component {
                         <Button variant="danger">Delete</Button>
                     </ButtonToolbar>
                 </Card>
-            </div>
         )
     }
 }

@@ -34,10 +34,16 @@
 
 .card-holder {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
 }
 
 .journal-card {
-  /* grid-area: 1 / 1 / span 1 / span 1; */
+  text-align: center;
+  margin: 6px;
+}
+
+.btn-toolbar {
+  display: inline-block;
+  padding: 10px;
 }

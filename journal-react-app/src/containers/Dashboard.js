@@ -29,7 +29,9 @@ createCards = (arr) => {
 
     render() {
         return(
-            <div>{this.createCards(this.state.journals)}</div>
+            <div className="card-holder">
+                {this.createCards(this.state.journals)}
+            </div>
         )
     }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Navbar} from 'react-bootstrap'
+import {Navbar, Nav} from 'react-bootstrap'
 
 class SiteNav extends Component {
 // constructor() {

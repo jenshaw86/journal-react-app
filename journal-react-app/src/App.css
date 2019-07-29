@@ -34,8 +34,8 @@
 
 .card-holder {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: auto;
 }
 
 .journal-card {
@@ -46,4 +46,8 @@
 .btn-toolbar {
   display: inline-block;
   padding: 10px;
+}
+
+button {
+  margin: 3px;
 }

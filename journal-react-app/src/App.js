@@ -19,10 +19,16 @@ componentDidMount() {
   fetch("http://localhost:3000/journals")
   .then(resp => resp.json())
   .then(data => {
-      this.setState({
-          journals: data
-      })
+    this.setState({
+        journals: data
+    })
   })
+}
+
+renderBook = (props) => {
+  if (this.state.journals.length !== 0) {
+    return <Book {...props} journals={this.state.journals} />
+  }
 }
 
   render() {
@@ -31,7 +37,7 @@ componentDidMount() {
         <Fragment>
           <SiteNav />
           <Route path="/" exact render={() => <Dashboard journals={this.state.journals} />}/>
-          <Route path="/journals/:id" exact render={(props) => <Book {...props} journals={this.state.journals}/>} />
+          <Route path="/journals/:id" exact render={(props) => this.renderBook(props)} />
         </Fragment>
       </Router>
     )

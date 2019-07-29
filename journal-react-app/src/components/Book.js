@@ -2,13 +2,13 @@ import React from "react"
 
 export default class Book extends React.Component {
     // should return object of single journal
-    getSelectedJournal = (selectedJournalId) => {
-        return this.props.journals.find((journal) => {
-            return journal.id === parseInt(selectedJournalId)
+    getSelectedJournal = () => {
+        return this.props.journals.find(journal => {
+            return journal.id === parseInt(this.props.match.params.id)
         })
     }
 
     render() {  
-        return <div>{this.props.journals[this.props.match.params.id].subject}</div>
+        return <div>{this.getSelectedJournal().subject}</div>
     }
 }

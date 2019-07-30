@@ -1,5 +1,5 @@
 import React from "react"
-import Entry from "../components/Entry"
+import Book from "../components/Book"
 
 export default class BookContainer extends React.Component {
     // should return object of single journal
@@ -9,13 +9,7 @@ export default class BookContainer extends React.Component {
         })
     }
 
-    renderEntries = () => {
-        return this.getSelectedJournal().entries.map((entry, idx) => {
-            return <Entry key={idx} entry={entry}/>
-        })
-    }
-
     render() {  
-        return <div>{this.renderEntries()}</div>
+        return <div><Book book={this.getSelectedJournal()} /></div>
     }
 }

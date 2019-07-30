@@ -13,7 +13,7 @@ const Dashboard = props => {
     console.log("i ran")
     if (arr.length !== 0) {
         return arr.map((journal, idx) => {
-            return <JournalCard key={idx} journal={journal} />;
+            return <JournalCard key={idx} journal={journal} deleteJournal={props.deleteJournal} />;
         });
     }
   };

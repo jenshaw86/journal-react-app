@@ -11,6 +11,10 @@ class JournalCard extends Component {
         })
     }
 
+    handleDelete = () => {
+        this.props.deleteJournal(this.props.journal)
+    }
+
     render() {
         return (
             <Card className="journal-card">
@@ -21,7 +25,7 @@ class JournalCard extends Component {
                 </Link>
                 <ButtonToolbar>
                     <Button variant="primary">Edit</Button>
-                    <Button variant="danger">Delete</Button>
+                    <Button variant="danger" onClick={this.handleDelete}>Delete</Button>
                 </ButtonToolbar>
             </Card>
             

@@ -39,6 +39,19 @@ addJournal = (journal) => {
   })
 }
 
+deleteJournal = (journal) => {
+  fetch(`http://localhost:3000/journals/${journal.id}`, {
+    method: "DELETE"
+  })
+  .then(resp => resp.json())
+  .then(data => {
+    this.setState({
+      journals: data
+    })
+  })
+  // TODO: finish delete feature
+}
+
   pageUp = () => {
     this.setState({
       currentIndex: this.state.currentIndex + 1
@@ -56,7 +69,7 @@ addJournal = (journal) => {
       <Router>
         <Fragment>
           <SiteNav />
-          <Route path="/" exact render={() => <Dashboard addJournal={this.addJournal} journals={this.state.journals} />}/>
+          <Route path="/" exact render={() => <Dashboard addJournal={this.addJournal} deleteJournal={this.deleteJournal} journals={this.state.journals} />}/>
           <Route path="/journals/:id" exact render={(props) => this.renderBook(props)} />
         </Fragment>
       </Router>

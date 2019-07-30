@@ -32,6 +32,13 @@ renderBook = (props) => {
   }
 }
 
+addJournal = (journal) => {
+  let newJournalArr = [...this.state.journals, journal]
+  this.setState({
+    journals: newJournalArr
+  })
+}
+
   pageUp = () => {
     this.setState({
       currentIndex: this.state.currentIndex + 1
@@ -49,7 +56,7 @@ renderBook = (props) => {
       <Router>
         <Fragment>
           <SiteNav />
-          <Route path="/" exact render={() => <Dashboard journals={this.state.journals} />}/>
+          <Route path="/" exact render={() => <Dashboard addJournal={this.addJournal} journals={this.state.journals} />}/>
           <Route path="/journals/:id" exact render={(props) => this.renderBook(props)} />
         </Fragment>
       </Router>

@@ -14,7 +14,7 @@ class SiteNav extends Component {
             <div>
                 <Navbar>
                     <Nav>
-                        <Nav.Link href="#">Home</Nav.Link>
+                        <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="#">About</Nav.Link>
                         <Nav.Link href="#">Login</Nav.Link>
                     </Nav>

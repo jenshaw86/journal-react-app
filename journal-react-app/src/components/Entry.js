@@ -10,9 +10,12 @@ const converter = new Showdown.Converter({
     tasklists: true
   });
 
-    const Entry = (props) => {
+const Entry = (props) => {
         const [value, setValue] = React.useState(props.entry.content);
-        const [selectedTab, setSelectedTab] = React.useState("preview")
+        const [selectedTab, setSelectedTab] = React.useState("write")
+        // const setValue = (newValue) => {
+            
+        // }
         return ( 
             <div>
                 <h1>Title: {props.entry.title}</h1>

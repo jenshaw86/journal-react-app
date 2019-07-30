@@ -11,10 +11,12 @@ export default class Book extends Component {
 
     handlePageDown = () => {
         this.props.pageDown()
+        this.renderEntries()
     }
 
     handlePageUp = () => {
         this.props.pageUp()
+        this.renderEntries()
     }
 
     render() {

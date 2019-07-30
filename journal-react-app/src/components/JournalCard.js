@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Card, ButtonToolbar, Button} from 'react-bootstrap'
 import Entry from "./Entry"
+import {Link} from 'react-router-dom'
 
 class JournalCard extends Component {
 
@@ -13,14 +14,17 @@ class JournalCard extends Component {
     render() {
         return (
             <Card className="journal-card">
-                <Card.Body>
-                    {this.props.journal.subject}
-                </Card.Body>
+                <Link to={`/journals/${this.props.journal.id}`}>
+                    <Card.Body>
+                        {this.props.journal.subject}
+                    </Card.Body>
+                </Link>
                 <ButtonToolbar>
                     <Button variant="primary">Edit</Button>
                     <Button variant="danger">Delete</Button>
                 </ButtonToolbar>
             </Card>
+            
         )
     }
 }

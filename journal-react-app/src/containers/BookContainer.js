@@ -1,7 +1,7 @@
 import React from "react"
-import Entry from "./Entry"
+import Entry from "../components/Entry"
 
-export default class Book extends React.Component {
+export default class BookContainer extends React.Component {
     // should return object of single journal
     getSelectedJournal = () => {
         return this.props.journals.find(journal => {
@@ -16,7 +16,6 @@ export default class Book extends React.Component {
     }
 
     render() {  
-
         return <div>{this.renderEntries()}</div>
     }
 }

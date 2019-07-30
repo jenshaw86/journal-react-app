@@ -11,7 +11,8 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-        journals: []
+        journals: [],
+        currentIndex: 0
     }
 }
 
@@ -27,9 +28,21 @@ componentDidMount() {
 
 renderBook = (props) => {
   if (this.state.journals.length !== 0) {
-    return <BookContainer {...props} journals={this.state.journals} />
+    return <BookContainer {...props} journals={this.state.journals} currentIndex={this.state.currentIndex} pageUp={this.pageUp} pageDown={this.pageDown} />
   }
 }
+
+  pageUp = () => {
+    this.setState({
+      currentIndex: this.state.currentIndex + 1
+    })
+  }
+
+  pageDown = () => {
+    this.setState({
+      currentIndex: this.state.currentIndex - 1
+    })
+  }
 
   render() {
     return (

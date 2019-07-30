@@ -49,7 +49,6 @@ deleteJournal = (journal) => {
       journals: data
     })
   })
-  // TODO: finish delete feature
 }
 
   pageUp = () => {

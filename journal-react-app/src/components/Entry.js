@@ -1,13 +1,31 @@
-import React, { Component } from "react"
+import React from "react"
+import ReactMde from "react-mde";
+import * as Showdown from "showdown";
+import "react-mde/lib/styles/css/react-mde-all.css";
 
-export default class Entry extends Component {
+const converter = new Showdown.Converter({
+    tables: true,
+    simplifiedAutoLink: true,
+    strikethrough: true,
+    tasklists: true
+  });
 
-    render() {
+    const Entry = (props) => {
+        const [value, setValue] = React.useState(props.entry.content);
+        const [selectedTab, setSelectedTab] = React.useState("preview")
         return ( 
             <div>
-                <h1>Title: {this.props.entry.title}</h1>
-                <p>{this.props.entry.content}</p>
+                <h1>Title: {props.entry.title}</h1>
+                <ReactMde
+                    value={value}
+                    onChange={setValue}
+                    selectedTab={selectedTab}
+                    onTabChange={setSelectedTab}
+                    generateMarkdownPreview={markdown =>
+                    Promise.resolve(converter.makeHtml(markdown))}
+                />
             </div>
         )
-    }
 }
+
+export default Entry

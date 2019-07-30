@@ -10,6 +10,6 @@ export default class BookContainer extends React.Component {
     }
 
     render() {  
-        return <div><Book book={this.getSelectedJournal()} /></div>
+        return <div><Book book={this.getSelectedJournal()} currentIndex={this.props.currentIndex} pageUp={this.props.pageUp} pageDown={this.props.pageDown} /></div>
     }
 }

@@ -8,8 +8,8 @@ class SiteNav extends Component {
             <div>
                 <Navbar>
                     <Nav>
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="#">Login</Nav.Link>
+                        <Nav.Link href="/">Dashboard</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
                     </Nav>
                 </Navbar>                
             </div>

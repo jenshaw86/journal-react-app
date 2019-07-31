@@ -32,6 +32,8 @@ renderBook = (props) => {
   }
 }
 
+// -------- JOURNAL METHODS ----------------------------------------------------------------------
+
 addJournal = (journal) => {
   let newJournalArr = [journal, ...this.state.journals]
   this.setState({
@@ -69,6 +71,8 @@ deleteJournal = (journal) => {
     })
   })
   }
+
+  // -------- ENTRY METHODS ----------------------------------------------------------------------
 
   pageUp = () => {
     this.setState({

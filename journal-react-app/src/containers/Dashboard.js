@@ -9,8 +9,6 @@ const Dashboard = props => {
   const handleShow = () => setShow(true);
 
   const createCards = arr => {
-    // DEBUG: arr returns integer]
-    console.log("i ran")
     if (arr.length !== 0) {
         return arr.map((journal, idx) => {
             return <JournalCard key={idx} journal={journal} editJournal={props.editJournal} deleteJournal={props.deleteJournal} />;

@@ -9,18 +9,9 @@ const JournalCard = props => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // const getEntries = (journal) => {
-  //     return journal.entries.map((entry, idx) => {
-  //         return <Entry key={idx} entry={entry}/>
-  //     })
-  // }
-
   const handleDelete = () => {
     props.deleteJournal(props.journal);
   };
-
-
-// TODO: add handleSubmit method to edit form
 
   const handleSubmit = (ev) => {
     ev.preventDefault()

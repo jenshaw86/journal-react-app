@@ -35,12 +35,17 @@ const Book = (props) => {
     .then(obj => handleNewEntry(obj))
     }
 
+    const filterDeletedEntry = (entries) => {
+        let filteredEntries = entries.filter((entry) => entry.journal_id === props.book.id)
+        setEntries(filteredEntries)
+    }
+
     const deleteEntry = (entry) => {
         fetch(`http://localhost:3000/entries/${entry.id}`, {
             method: "DELETE"
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => filterDeletedEntry(data))
     }
 
 

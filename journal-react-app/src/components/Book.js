@@ -6,15 +6,35 @@ const Book = (props) => {
 
     const [show, setShow] = React.useState(false);
 
+    const [entries, setEntries] = React.useState(props.book.entries)
+
+    const handleNewEntry = (entry) =>  setEntries([entry, ...entries]);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const handleSubmit = (ev) => {
         ev.preventDefault()
         handleClose()
+        console.log("title:" + ev.target[0].value, "content:" + ev.target[1].value)
         // TODO change to edit entry
-        props.editJournal(ev, props.journal)
-      }
+        // setEntries(ev.target[0].value)
+        fetch(`http://localhost:3000/entries`, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: ev.target[0].value,
+            content: ev.target[1].value,
+            journal_id: props.book.id
+        })
+    })
+    .then(resp => resp.json())
+    .then(obj => handleNewEntry(obj))
+    }
+
 
     const renderEntries = () => {
         return props.book.entries.map((entry, idx) => {
@@ -32,13 +52,15 @@ const Book = (props) => {
             
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Edit Journal</Modal.Title>
+                <Modal.Title>New Entry</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                     <form onSubmit={handleSubmit}>
                         <Form.Group controlId="formEditSubject">
-                        <Form.Label>Subject</Form.Label>
-                        <Form.Control type="text" placeholder="enter a new subject" />
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control type="text" placeholder="enter a new title" />
+                        <Form.Label>Content</Form.Label>
+                        <Form.Control type="text" placeholder="enter content" />
                         </Form.Group>
                         {/* TODO handle submit for new entry */}
                         <Button variant="primary" type="submit">

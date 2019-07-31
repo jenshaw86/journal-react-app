@@ -73,18 +73,9 @@ deleteJournal = (journal) => {
   }
 
   // -------- ENTRY METHODS ----------------------------------------------------------------------
-
-  pageUp = () => {
-    this.setState({
-      currentIndex: this.state.currentIndex + 1
-    })
-  }
-
-  pageDown = () => {
-    this.setState({
-      currentIndex: this.state.currentIndex - 1
-    })
-  }
+  
+  
+  
 
   render() {
     return (

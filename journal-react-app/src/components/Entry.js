@@ -39,13 +39,15 @@ const Entry = (props) => {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Edit Journal</Modal.Title>
+                <Modal.Title>New Entry</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <form >
                     <Form.Group controlId="formEditSubject">
-                    <Form.Label>Subject</Form.Label>
-                    <Form.Control type="text" placeholder="enter a new subject" />
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" placeholder="enter a new title" />
+                    <Form.Label>Content</Form.Label>
+                    <Form.Control type="text" placeholder="enter content " />
                     </Form.Group>
                     <Button variant="primary" type="submit" onClick={handleSubmit}>
                         Submit

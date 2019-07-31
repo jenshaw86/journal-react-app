@@ -24,7 +24,7 @@ const JournalCard = props => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    console.log(ev.target[0].value);
+    handleClose()
     props.editJournal(ev, props.journal)
   }
 

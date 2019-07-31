@@ -33,7 +33,7 @@ renderBook = (props) => {
 }
 
 addJournal = (journal) => {
-  let newJournalArr = [...this.state.journals, journal]
+  let newJournalArr = [journal, ...this.state.journals]
   this.setState({
     journals: newJournalArr
   })

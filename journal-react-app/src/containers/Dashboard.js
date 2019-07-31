@@ -35,6 +35,8 @@ const Dashboard = props => {
   }
 
   return (
+    <>
+    <h1>Dashboard</h1>
     <div className="card-holder">
       <Card className="journal-card" onClick={handleShow}>
         <Card.Body>+</Card.Body>
@@ -58,6 +60,7 @@ const Dashboard = props => {
         </Modal.Body>
       </Modal>
     </div>
+    </>
   );
 };
 

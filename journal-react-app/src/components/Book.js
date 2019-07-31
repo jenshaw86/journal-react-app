@@ -37,9 +37,11 @@ const Book = (props) => {
 
 
     const renderEntries = () => {
-        return props.book.entries.map((entry, idx) => {
-            return <Entry key={idx} entry={entry}/>
-        })
+        if(entries) {
+            return [...entries].map((entry, idx) => {
+                return <Entry key={idx} entry={entry}/>
+            })
+        }
     }
 
         return <div className="card-holder">

@@ -16,9 +16,6 @@ const Book = (props) => {
     const handleSubmit = (ev) => {
         ev.preventDefault()
         handleClose()
-        console.log("title:" + ev.target[0].value, "content:" + ev.target[1].value)
-        // TODO change to edit entry
-        // setEntries(ev.target[0].value)
         fetch(`http://localhost:3000/entries`, {
         method: "POST",
         headers: {
@@ -35,7 +32,7 @@ const Book = (props) => {
     .then(obj => handleNewEntry(obj))
     }
 
-    const filterDeletedEntry = (entries) => {
+    const filterEntries = (entries) => {
         let filteredEntries = entries.filter((entry) => entry.journal_id === props.book.id)
         setEntries(filteredEntries)
     }
@@ -45,7 +42,23 @@ const Book = (props) => {
             method: "DELETE"
         })
         .then(resp => resp.json())
-        .then(data => filterDeletedEntry(data))
+        .then(data => filterEntries(data))
+    }
+
+    const editEntry = (ev, entry) => {
+        fetch(`http://localhost:3000/entries/${entry.id}`, {
+            method: "PATCH",
+            headers: {
+                "Accepts": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: ev.target[0].value,
+                content: ev.target[1].value
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => filterEntries(data))
     }
 
 
@@ -53,7 +66,7 @@ const Book = (props) => {
         if(entries) {
             const sortedEntries = [...entries].sort((a, b) => (b.created_at > a.created_at) ? 1 : -1 )
             return sortedEntries.map((entry, idx) => {
-                return <Entry key={idx} entry={entry} deleteEntry={deleteEntry}/>
+                return <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry}/>
             })
         }
     }

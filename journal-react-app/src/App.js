@@ -66,10 +66,10 @@ deleteJournal = (journal) => {
   })
   .then(resp => resp.json())
   .then(data => {
-    this.setState({
-      journals: data
+      this.setState({
+        journals: data
+      })
     })
-  })
   }
 
   // -------- ENTRY METHODS ----------------------------------------------------------------------

@@ -12,12 +12,13 @@ const Entry = (props) => {
         props.deleteEntry(props.entry)
       };
     
-      const handleSubmit = (ev) => {
+    const handleSubmit = (ev) => {
         ev.preventDefault()
+        ev.persist()
         handleClose()
-        // props.editJournal(ev, props.journal)
-        console.log("submit me")
-      }
+        props.editEntry(ev, props.entry)
+        // console.log("submit me")
+    }
 
 
 
@@ -39,17 +40,20 @@ const Entry = (props) => {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Edit Entry</Modal.Title>
+                    <Modal.Title>Edit Entry</Modal.Title>
                 </Modal.Header>
+                
                 <Modal.Body>
-                <form >
+                <form onSubmit={handleSubmit}>
                     <Form.Group controlId="formEditSubject">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" placeholder="enter a new title" />
-                    <Form.Label>Content</Form.Label>
-                    <Form.Control type="text" placeholder="enter content " />
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control type="text" defaultValue={`${props.entry.title}`} />
+
+                        <Form.Label>Content</Form.Label>
+                        <Form.Control as="textarea" rows="3" defaultValue={`${props.entry.content}`} />
                     </Form.Group>
-                    <Button variant="primary" type="submit" onClick={handleSubmit}>
+
+                    <Button variant="primary" type="submit">
                         Submit
                     </Button>
                 </form>

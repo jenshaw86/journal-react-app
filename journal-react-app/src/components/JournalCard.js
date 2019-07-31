@@ -19,7 +19,6 @@ const JournalCard = props => {
     props.editJournal(ev, props.journal)
   }
 
-
   return (
     <>
       <Card className="journal-card">
@@ -44,7 +43,7 @@ const JournalCard = props => {
           <form onSubmit={handleSubmit}>
             <Form.Group controlId="formEditSubject">
               <Form.Label>Subject</Form.Label>
-              <Form.Control type="text" placeholder="enter a new subject" />
+              <Form.Control type="text" defaultValue={`${props.journal.subject}`} />
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit

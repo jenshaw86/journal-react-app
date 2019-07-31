@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, ButtonToolbar, Button, Modal, Form } from "react-bootstrap";
-import Entry from "./Entry";
+// import Entry from "./Entry";
 import { Link } from "react-router-dom";
 
 const JournalCard = props => {
@@ -21,6 +21,14 @@ const JournalCard = props => {
 
 
 // TODO: add handleSubmit method to edit form
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault()
+    console.log(ev.target[0].value);
+    props.editJournal(ev, props.journal)
+  }
+
+
   return (
     <>
       <Card className="journal-card">
@@ -45,7 +53,7 @@ const JournalCard = props => {
           <form onSubmit={handleSubmit}>
             <Form.Group controlId="formEditSubject">
               <Form.Label>Subject</Form.Label>
-              <Form.Control type="text" placeholder="Edit subject title" />
+              <Form.Control type="text" placeholder="enter a new subject" />
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit

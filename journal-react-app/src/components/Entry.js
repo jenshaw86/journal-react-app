@@ -9,7 +9,7 @@ const Entry = (props) => {
     const handleShow = () => setShow(true);
 
     const handleDelete = () => {
-        console.log("delete me")
+        props.deleteEntry(props.entry)
       };
     
       const handleSubmit = (ev) => {
@@ -39,7 +39,7 @@ const Entry = (props) => {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>New Entry</Modal.Title>
+                <Modal.Title>Edit Entry</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <form >

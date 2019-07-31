@@ -35,11 +35,20 @@ const Book = (props) => {
     .then(obj => handleNewEntry(obj))
     }
 
+    const deleteEntry = (entry) => {
+        fetch(`http://localhost:3000/entries/${entry.id}`, {
+            method: "DELETE"
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+    }
+
 
     const renderEntries = () => {
         if(entries) {
-            return [...entries].map((entry, idx) => {
-                return <Entry key={idx} entry={entry}/>
+            const sortedEntries = [...entries].sort((a, b) => (b.created_at > a.created_at) ? 1 : -1 )
+            return sortedEntries.map((entry, idx) => {
+                return <Entry key={idx} entry={entry} deleteEntry={deleteEntry}/>
             })
         }
     }

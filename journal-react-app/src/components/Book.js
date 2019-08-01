@@ -64,37 +64,36 @@ const Book = props => {
 
     const renderEntries = () => {
       if (entries) {
-        const sortedEntries = [...entries].sort((a, b) => b.created_at > a.created_at ? 1 : -1);
+        const sortedEntries = [...entries].sort((a, b) => (b.created_at > a.created_at) ? 1 : -1);
         return sortedEntries.slice(props.currentIndex, props.currentIndex + 1).map((entry, idx) => {
             if (props.currentIndex === 0) {
                 return (
-                    <>
-                        <ButtonToolbar className="container">
-                            <Button onClick={() => props.pageUp()}>Page Up</Button>
-                        </ButtonToolbar>
+                    <div className="page-flipper">
+                        <Button className="hidden" onClick={() => props.pageDown()}>Left</Button>
                         <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry} />
-                    </>
+                        <Button onClick={() => props.pageUp()}>Right</Button>
+                    </div>
                 )
             } else if (sortedEntries.length === props.currentIndex + 1) {
                 return (
-                    <>
-                        <ButtonToolbar className="container">
-                            <Button onClick={() => props.pageDown()}>Page Down</Button>                    
-                        </ButtonToolbar>
-                        <Card className="journal-card" onClick={handleShow}>
-                            <Card.Body>+</Card.Body>
-                        </Card>
-                    </>
+                    <div className="page-flipper">
+                        <Button onClick={() => props.pageDown()}>Left</Button>                    
+                        <div>
+                            <Card className="journal-card" onClick={handleShow}>
+                                <Card.Body>+</Card.Body>
+                            </Card>
+                            <ButtonToolbar></ButtonToolbar>
+                        </div>
+                        <Button className="hidden" onClick={() => props.pageUp()}>Right</Button>
+                    </div>
                 )
             } else if (props.currentIndex < sortedEntries.length) {
                 return (
-                    <>
-                        <ButtonToolbar className="container">
-                            <Button onClick={() => props.pageUp()}>Page Up</Button>
-                            <Button onClick={() => props.pageDown()}>Page Down</Button>
-                        </ButtonToolbar>
+                    <div className="page-flipper">
+                        <Button onClick={() => props.pageDown()}>Left</Button>
                         <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry} />
-                    </>
+                        <Button onClick={() => props.pageUp()}>Right</Button>
+                    </div>
                 );
             } 
         })
@@ -106,7 +105,6 @@ const Book = props => {
       <h1>Journal Entries</h1>
       <div className="container">
         {renderEntries()}
-        
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

@@ -40,6 +40,8 @@
 
 .journal-card {
   text-align: center;
+  width: 250px;
+  height: 200px;
   margin: 6px;
 }
 
@@ -51,4 +53,16 @@
 
 button {
   margin: 3px;
+}
+
+.page-flipper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  visibility: hidden;
 }

@@ -32,7 +32,11 @@ const Entry = (props) => {
     }
 
     const displaySnippet = () => {
-        return props.entry.content.slice(0, 20) + "..."
+        if (props.entry.content.length > 250){
+            return props.entry.content.slice(0, 247) + "..."
+        } else {
+            return props.entry.content
+        }
     }
 
     return (

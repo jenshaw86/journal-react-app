@@ -36,6 +36,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
+  
 }
 
 .journal-card {
@@ -66,3 +67,4 @@ button {
 .hidden {
   visibility: hidden;
 }
+

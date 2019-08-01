@@ -23,6 +23,11 @@ export default class BookContainer extends React.Component {
         })
     }
 
+    resetCurrentIndex = () => {
+        this.setState({
+            currentIndex: 0
+        })
+    }
 
     // should return object of single journal
     getSelectedJournal = () => {
@@ -32,6 +37,6 @@ export default class BookContainer extends React.Component {
     }
 
     render() {  
-        return <div><Book currentIndex={this.state.currentIndex} book={this.getSelectedJournal()} pageUp={this.pageUp} pageDown={this.pageDown} /></div>
+        return <div><Book currentIndex={this.state.currentIndex} resetCurrentIndex={this.resetCurrentIndex} book={this.getSelectedJournal()} pageUp={this.pageUp} pageDown={this.pageDown} /></div>
     }
 }

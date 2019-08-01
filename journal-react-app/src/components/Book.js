@@ -10,7 +10,10 @@ const Book = props => {
 
   //   Entries Hook
   const [entries, setEntries] = React.useState(props.book.entries);
-  const handleNewEntry = entry => setEntries([entry, ...entries]);
+  const handleNewEntry = entry => {
+      setEntries([entry, ...entries]);
+      props.resetCurrentIndex()
+  }
   
   const handleSubmit = ev => {
     ev.preventDefault();
@@ -61,7 +64,7 @@ const Book = props => {
   };
 
     const renderEntries = () => {
-      if (entries.length !== 0) {
+      if (entries && entries.length !== 0) {
         const sortedEntries = [...entries].sort((a, b) => (b.created_at > a.created_at) ? 1 : -1);
         return sortedEntries.slice(props.currentIndex, props.currentIndex + 1).map((entry, idx) => {
             if (props.currentIndex === 0) {
@@ -99,7 +102,10 @@ const Book = props => {
         return(
             <div className="page-flipper">
                 <Card className="journal-card" onClick={handleShow}>
-                    <Card.Body>+</Card.Body>
+                    <Card.Body>
+                        <span>+</span>
+                        <p>Add New Entry</p>
+                        </Card.Body>
                 </Card>
             </div>
         )

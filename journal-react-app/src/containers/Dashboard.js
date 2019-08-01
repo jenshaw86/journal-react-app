@@ -39,7 +39,7 @@ const Dashboard = props => {
     <h1>Dashboard</h1>
     <div className="card-holder">
       <Card className="journal-card" onClick={handleShow}>
-        <Card.Body>+</Card.Body>
+        <Card.Body><span>+</span><p>Add New Journal</p></Card.Body>
       </Card>
       {createCards(props.journals)}
 

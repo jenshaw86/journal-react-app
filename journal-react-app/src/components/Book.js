@@ -64,12 +64,23 @@ const Book = props => {
   };
 
     const renderEntries = () => {
-        console.log(`I'm running.`)
       if (entries && entries.length !== 0) {
         const sortedEntries = [...entries].sort((a, b) => (b.created_at > a.created_at) ? 1 : -1);
-        console.log(`I have ${sortedEntries.length} entries. Current Index is ${props.currentIndex}`)
-        console.log(sortedEntries.length === props.currentIndex)
+        if (sortedEntries.length === props.currentIndex) {
+            return (
+                <div className="page-flipper">
+                    <Button onClick={() => props.pageDown()}>Left</Button>                    
+                    <div>
+                        <Card className="journal-card" onClick={handleShow}>
+                            <Card.Body><span>+</span><p>Add New Entry</p></Card.Body>
+                        </Card>
+                    </div>
+                    <Button className="hidden" onClick={() => props.pageUp()}>Right</Button>
+                </div>
+            )
+        } else {
         return sortedEntries.slice(props.currentIndex, props.currentIndex + 1).map((entry, idx) => {
+            console.log(entry);
             if (props.currentIndex === 0) {
                 return (
                     <div className="page-flipper">
@@ -78,21 +89,7 @@ const Book = props => {
                         <Button onClick={() => props.pageUp()}>Right</Button>
                     </div>
                 )
-            } else if (sortedEntries.length === props.currentIndex) {
-                console.log(`TRUTH`)
-                return (
-                    <div className="page-flipper">
-                        <Button onClick={() => props.pageDown()}>Left</Button>                    
-                        <div>
-                            <Card className="journal-card" onClick={handleShow}>
-                                <Card.Body><span>+</span><p>Add New Entry</p></Card.Body>
-                            </Card>
-                        </div>
-                        <Button className="hidden" onClick={() => props.pageUp()}>Right</Button>
-                    </div>
-                )
-            } else if (props.currentIndex > 0 && props.currentIndex < sortedEntries.length) {
-                console.log(`You're in the middle!`)
+            } else if (props.currentIndex > 0 && props.currentIndex <= sortedEntries.length) {
                 return (
                     <div className="page-flipper">
                         <Button onClick={() => props.pageDown()}>Left</Button>
@@ -102,6 +99,7 @@ const Book = props => {
                 );
             }
         })
+    }
       } else {
         return(
             <div className="page-flipper">
@@ -117,10 +115,10 @@ const Book = props => {
     }
                 
   return (
-    <>`
+    <>
       <h1>Journal Entries</h1>
       <div className="container">
-        {renderEntries()}
+        {renderEntries()} 
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

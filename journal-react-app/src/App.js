@@ -27,7 +27,7 @@ componentDidMount() {
 
 renderBook = (props) => {
   if (this.state.journals.length !== 0) {
-    return <BookContainer {...props} journals={this.state.journals} pageUp={this.pageUp} pageDown={this.pageDown} />
+    return <BookContainer {...props} journals={this.state.journals} />
   }
 }
 

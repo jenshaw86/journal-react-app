@@ -64,36 +64,40 @@ const Book = props => {
   };
 
     const renderEntries = () => {
+        console.log(`I'm running.`)
       if (entries && entries.length !== 0) {
         const sortedEntries = [...entries].sort((a, b) => (b.created_at > a.created_at) ? 1 : -1);
+        console.log(`I have ${sortedEntries.length} entries. Current Index is ${props.currentIndex}`)
+        console.log(sortedEntries.length === props.currentIndex)
         return sortedEntries.slice(props.currentIndex, props.currentIndex + 1).map((entry, idx) => {
             if (props.currentIndex === 0) {
                 return (
                     <div className="page-flipper">
-                    <Button className="hidden" onClick={() => props.pageDown()}>Left</Button>
-                    <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry} />
-                    <Button onClick={() => props.pageUp()}>Right</Button>
+                        <Button className="hidden" onClick={() => props.pageDown()}>Left</Button>
+                        <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry} />
+                        <Button onClick={() => props.pageUp()}>Right</Button>
                     </div>
                 )
-            } else if (sortedEntries.length === props.currentIndex + 1) {
+            } else if (sortedEntries.length === props.currentIndex) {
+                console.log(`TRUTH`)
                 return (
                     <div className="page-flipper">
-                    <Button onClick={() => props.pageDown()}>Left</Button>                    
-                    <div>
-                    <Card className="journal-card" onClick={handleShow}>
-                    <Card.Body>+</Card.Body>
-                    </Card>
-                    <ButtonToolbar></ButtonToolbar>
-                    </div>
-                    <Button className="hidden" onClick={() => props.pageUp()}>Right</Button>
+                        <Button onClick={() => props.pageDown()}>Left</Button>                    
+                        <div>
+                            <Card className="journal-card" onClick={handleShow}>
+                                <Card.Body><span>+</span><p>Add New Entry</p></Card.Body>
+                            </Card>
+                        </div>
+                        <Button className="hidden" onClick={() => props.pageUp()}>Right</Button>
                     </div>
                 )
-            } else if (props.currentIndex < sortedEntries.length) {
+            } else if (props.currentIndex > 0 && props.currentIndex < sortedEntries.length) {
+                console.log(`You're in the middle!`)
                 return (
                     <div className="page-flipper">
-                    <Button onClick={() => props.pageDown()}>Left</Button>
-                    <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry} />
-                    <Button onClick={() => props.pageUp()}>Right</Button>
+                        <Button onClick={() => props.pageDown()}>Left</Button>
+                        <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry} />
+                        <Button onClick={() => props.pageUp()}>Right</Button>
                     </div>
                 );
             }

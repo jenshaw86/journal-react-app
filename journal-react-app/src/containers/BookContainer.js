@@ -2,6 +2,28 @@ import React from "react"
 import Book from "../components/Book"
 
 export default class BookContainer extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            currentIndex: 0
+        }
+    }
+
+    pageUp = () => {
+        let increasedIndex = this.state.currentIndex + 1
+        this.setState({
+            currentIndex: increasedIndex
+        })
+    }
+
+    pageDown = () => {
+        let decreasedIndex = this.state.currentIndex - 1
+        this.setState({
+            currentIndex: decreasedIndex
+        })
+    }
+
+
     // should return object of single journal
     getSelectedJournal = () => {
         return this.props.journals.find(journal => {
@@ -10,6 +32,6 @@ export default class BookContainer extends React.Component {
     }
 
     render() {  
-        return <div><Book book={this.getSelectedJournal()} currentIndex={this.props.currentIndex} pageUp={this.props.pageUp} pageDown={this.props.pageDown} /></div>
+        return <div><Book currentIndex={this.state.currentIndex} book={this.getSelectedJournal()} pageUp={this.pageUp} pageDown={this.pageDown} /></div>
     }
 }

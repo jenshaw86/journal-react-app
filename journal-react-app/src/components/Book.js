@@ -1,17 +1,17 @@
 import React from "react";
 import Entry from "./Entry";
-import { Card, Button, Modal, Form } from "react-bootstrap";
+import { Card, Button, Modal, Form, ButtonToolbar } from "react-bootstrap";
 
 const Book = props => {
+    // Modal Hooks
   const [show, setShow] = React.useState(false);
-
-  const [entries, setEntries] = React.useState(props.book.entries);
-
-  const handleNewEntry = entry => setEntries([entry, ...entries]);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  //   Entries Hook
+  const [entries, setEntries] = React.useState(props.book.entries);
+  const handleNewEntry = entry => setEntries([entry, ...entries]);
+  
   const handleSubmit = ev => {
     ev.preventDefault();
     handleClose();
@@ -62,33 +62,51 @@ const Book = props => {
       .then(data => filterEntries(data));
   };
 
-  const renderEntries = () => {
-    if (entries) {
-      const sortedEntries = [...entries].sort((a, b) =>
-        b.created_at > a.created_at ? 1 : -1
-      );
-      return sortedEntries.map((entry, idx) => {
-        return (
-          <Entry
-            key={idx}
-            entry={entry}
-            editEntry={editEntry}
-            deleteEntry={deleteEntry}
-          />
-        );
-      });
+    const renderEntries = () => {
+      if (entries) {
+        const sortedEntries = [...entries].sort((a, b) => b.created_at > a.created_at ? 1 : -1);
+        return sortedEntries.slice(props.currentIndex, props.currentIndex + 1).map((entry, idx) => {
+            if (props.currentIndex === 0) {
+                return (
+                    <>
+                        <ButtonToolbar className="container">
+                            <Button onClick={() => props.pageUp()}>Page Up</Button>
+                        </ButtonToolbar>
+                        <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry} />
+                    </>
+                )
+            } else if (sortedEntries.length === props.currentIndex + 1) {
+                return (
+                    <>
+                        <ButtonToolbar className="container">
+                            <Button onClick={() => props.pageDown()}>Page Down</Button>                    
+                        </ButtonToolbar>
+                        <Card className="journal-card" onClick={handleShow}>
+                            <Card.Body>+</Card.Body>
+                        </Card>
+                    </>
+                )
+            } else if (props.currentIndex < sortedEntries.length) {
+                return (
+                    <>
+                        <ButtonToolbar className="container">
+                            <Button onClick={() => props.pageUp()}>Page Up</Button>
+                            <Button onClick={() => props.pageDown()}>Page Down</Button>
+                        </ButtonToolbar>
+                        <Entry key={idx} entry={entry} editEntry={editEntry} deleteEntry={deleteEntry} />
+                    </>
+                );
+            } 
+        })
+      }
     }
-  };
 
   return (
     <>
       <h1>Journal Entries</h1>
-      <div className="card-holder">
-        <Card className="journal-card" onClick={handleShow}>
-          <Card.Body>+</Card.Body>
-        </Card>
-
+      <div className="container">
         {renderEntries()}
+        
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -114,4 +132,4 @@ const Book = props => {
   );
 };
 
-export default Book;
+export default Book

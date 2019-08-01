@@ -31,23 +31,27 @@ const Entry = (props) => {
         // console.log("submit me")
     }
 
-
+    const displaySnippet = () => {
+        return props.entry.content.slice(0, 20) + "..."
+    }
 
     return (
       <div>
-        <Card className="journal-card">
-          <Card.Body>{props.entry.title}</Card.Body>
+        <Card className="journal-card" onClick={handleShowRead}>
+          <Card.Body>
+          <h3>{props.entry.title}</h3>
+          <p>{displaySnippet()}</p>
+          </Card.Body>
           {/* STRECH include intro snippet of entry content ... */}
-          <ButtonToolbar>
+        </Card>
+        <ButtonToolbar className="container">
             <Button variant="primary" onClick={handleShowRead}>
               View
             </Button>
             <Button variant="danger" onClick={handleDelete}>
               Delete
             </Button>
-          </ButtonToolbar>
-        </Card>
-
+        </ButtonToolbar>
         {/* Read Modal */}
         <Modal show={showRead} onHide={handleCloseRead}>
           <Modal.Header closeButton>
